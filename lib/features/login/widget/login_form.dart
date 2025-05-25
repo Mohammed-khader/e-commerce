@@ -1,8 +1,8 @@
 import 'package:first_project/core/theme/app_colors.dart';
 import 'package:first_project/core/widgets/buttons/custom_buttons.dart';
 import 'package:first_project/core/widgets/text_field/custom_text_field.dart';
-import 'package:first_project/features/Sign_in/view/Signin_view.dart';
 import 'package:first_project/features/login/view_model/cubit.dart';
+import 'package:first_project/features/signup/view/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,8 +25,7 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             'Login',
-            style:
-                GoogleFonts.poppins(fontSize: 35, fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(fontSize: 35, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           CustomTextField(
@@ -77,7 +76,7 @@ class LoginForm extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return const SignIn();
+                        return const SignUp();
                       },
                     ),
                   );

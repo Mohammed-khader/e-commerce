@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:first_project/features/home/home_view.dart';
 import 'package:first_project/features/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';

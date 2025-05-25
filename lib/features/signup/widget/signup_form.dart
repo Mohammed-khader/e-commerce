@@ -1,17 +1,17 @@
 import 'package:first_project/core/widgets/buttons/custom_buttons.dart';
 import 'package:first_project/core/widgets/text_field/custom_text_field.dart';
-import 'package:first_project/features/Sign_in/view_model/cubit.dart';
+import 'package:first_project/features/signup/view_model/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SigninForm extends StatelessWidget {
-  const SigninForm({super.key});
+class SignUpForm extends StatelessWidget {
+  const SignUpForm({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: context.read<SignInCubit>().formKey,
+      key: context.read<SignUpCubit>().formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -21,7 +21,7 @@ class SigninForm extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           CustomTextField(
-            controller: context.read<SignInCubit>().usernamecontrolar,
+            controller: context.read<SignUpCubit>().usernamecontrolar,
             label: 'User Name',
             keyboardType: TextInputType.name,
             validator: (username) {
@@ -35,18 +35,22 @@ class SigninForm extends StatelessWidget {
           CustomTextField(
             keyboardType: TextInputType.number,
             label: 'Phone Number',
-            controller: context.read<SignInCubit>().phonecontrolar,
+            controller: context.read<SignUpCubit>().phonecontrolar,
+            maxLength: 10,
             validator: (value) {
               bool isValidPhoneNumber(String phone) {
-                final phoneRegex = RegExp(r'^\d{10,}$');
+                final phoneRegex = RegExp(r'^\d{10}$');
                 return phoneRegex.hasMatch(phone);
               }
 
               if (value == null || value.isEmpty) {
-                return 'Please enter your phone number';
-              } else if (!isValidPhoneNumber(value)) {
-                return ' It must be at least 10 digits';
+                return 'Please enter a phone number';
               }
+
+              if (!isValidPhoneNumber(value)) {
+                return 'Phone number must be exactly 10 digits';
+              }
+
               return null;
             },
           ),
@@ -54,7 +58,7 @@ class SigninForm extends StatelessWidget {
           CustomTextField(
             keyboardType: TextInputType.emailAddress,
             label: 'Email',
-            controller: context.read<SignInCubit>().emailcontrolar,
+            controller: context.read<SignUpCubit>().emailcontrolar,
             validator: (value) {
               bool isValidEmail(String email) {
                 final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
@@ -72,7 +76,7 @@ class SigninForm extends StatelessWidget {
           const SizedBox(height: 15),
           CustomTextField(
             label: 'Password',
-            controller: context.read<SignInCubit>().passwordcontrolar,
+            controller: context.read<SignUpCubit>().passwordcontrolar,
             obscureText: true,
             validator: (password) {
               if (password?.isEmpty ?? true) {
@@ -85,14 +89,13 @@ class SigninForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomTextField(
-            controller: context.read<SignInCubit>().confermepasswordcontrolar,
+            controller: context.read<SignUpCubit>().confermepasswordcontrolar,
             label: 'Conferm password',
             obscureText: true,
             validator: (confermpassword) {
               if (confermpassword?.isEmpty ?? true) {
                 return "pleass Enter your conferm password";
-              } else if (confermpassword !=
-                  context.read<SignInCubit>().passwordcontrolar.text) {
+              } else if (confermpassword != context.read<SignUpCubit>().passwordcontrolar.text) {
                 return "Confirm password does not match";
               }
               return null;
@@ -102,7 +105,7 @@ class SigninForm extends StatelessWidget {
           CustomButtons(
             text: 'Create Account',
             onTap: () {
-              context.read<SignInCubit>().createAcoutn();
+              context.read<SignUpCubit>().createAcoutn();
             },
           )
         ],

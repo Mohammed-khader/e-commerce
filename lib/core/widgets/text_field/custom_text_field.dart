@@ -10,6 +10,7 @@ class CustomTextField extends StatefulWidget {
     this.keyboardType,
     this.controller,
     this.validator,
+    this.maxLength,
   });
   final String label;
   final double? borderRadius;
@@ -17,6 +18,7 @@ class CustomTextField extends StatefulWidget {
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
+  final int? maxLength;
   final String? Function(String?)? validator;
 
   @override
@@ -34,6 +36,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: widget.maxLength,
       validator: widget.validator,
       controller: widget.controller,
       keyboardType: widget.keyboardType ?? TextInputType.text,

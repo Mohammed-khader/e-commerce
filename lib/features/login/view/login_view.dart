@@ -39,8 +39,7 @@ class LoginView extends StatelessWidget {
                           child: BlocListener<LoginCubit, LoginStates>(
                             listener: (context, state) {
                               if (state is LoginSucessState) {
-                                Navigator.of(context)
-                                    .pushReplacement(MaterialPageRoute(
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(
                                   builder: (context) {
                                     return const HomeView();
                                   },
