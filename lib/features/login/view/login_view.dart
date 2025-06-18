@@ -4,9 +4,9 @@ import 'package:first_project/core/theme/app_padding.dart';
 import 'package:first_project/core/widgets/dialog/custom_loding_dialog.dart';
 import 'package:first_project/features/login/widget/login_form.dart';
 import 'package:first_project/core/widgets/snakbar/custom_snakbar.dart';
-import 'package:first_project/features/home/home_view.dart';
-import 'package:first_project/features/login/view_model/cubit.dart';
-import 'package:first_project/features/login/view_model/states.dart';
+import 'package:first_project/features/home/view/home_view.dart';
+import 'package:first_project/features/login/view_model/login_cubit.dart';
+import 'package:first_project/features/login/view_model/login_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -38,7 +38,7 @@ class LoginView extends StatelessWidget {
                           padding: AppPadding.allpadding,
                           child: BlocListener<LoginCubit, LoginStates>(
                             listener: (context, state) {
-                              if (state is LoginSucessState) {
+                              if (state is LoginSuccesstate) {
                                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                                   builder: (context) {
                                     return const HomeView();

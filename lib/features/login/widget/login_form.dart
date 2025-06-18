@@ -1,7 +1,7 @@
 import 'package:first_project/core/theme/app_colors.dart';
 import 'package:first_project/core/widgets/buttons/custom_buttons.dart';
 import 'package:first_project/core/widgets/text_field/custom_text_field.dart';
-import 'package:first_project/features/login/view_model/cubit.dart';
+import 'package:first_project/features/login/view_model/login_cubit.dart';
 import 'package:first_project/features/signup/view/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

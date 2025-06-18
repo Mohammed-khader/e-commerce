@@ -10,4 +10,4 @@ class LoginErrorState extends LoginStates {
   LoginErrorState({required this.error});
 }
 
-class LoginSucessState extends LoginStates {}
+class LoginSuccesstate extends LoginStates {}

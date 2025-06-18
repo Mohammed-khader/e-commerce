@@ -1,5 +1,5 @@
 import 'package:first_project/features/login/repo/login_repo.dart';
-import 'package:first_project/features/login/view_model/states.dart';
+import 'package:first_project/features/login/view_model/login_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,12 +12,14 @@ class LoginCubit extends Cubit<LoginStates> {
   void logIn() async {
     if (formKey.currentState?.validate() ?? false) {
       emit(LoginLoadingState());
-      final result = await _loginrepo.loginReporequasr(
+      final result = await _loginrepo.loginRepoRequast(
         email: emailController.text,
         password: passwordController.text,
       );
       result.fold(
-          (error) => emit(LoginErrorState(error: error)), (user) => emit(LoginSucessState()));
+        (error) => emit(LoginErrorState(error: error)),
+        (user) => emit(LoginSuccesstate()),
+      );
     }
   }
 

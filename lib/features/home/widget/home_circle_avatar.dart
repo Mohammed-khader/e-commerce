@@ -1,39 +1,54 @@
-import 'package:first_project/core/theme/app_colors.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+part of '../view/home_view.dart';
 
-class HomeCircleAvatar extends StatelessWidget {
-  const HomeCircleAvatar({super.key});
-
+class _HomeCircleAvatar extends StatelessWidget {
+  const _HomeCircleAvatar({required this.categories});
+  final List<CategoryModel> categories;
   @override
   Widget build(BuildContext context) {
-    final nameFrind = [
-      'All',
-      'Joker',
-      'zabor',
-      'Naser',
-      'Hamzeh',
-      'monther',
-      'zabor',
-      'torky',
-      'somar',
-      '3beed',
-    ];
     return SizedBox(
       height: 100,
       child: ListView.builder(
-        itemCount: nameFrind.length,
+        itemCount: categories.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(4.5),
-            child: Center(
-              child: CircleAvatar(
-                backgroundColor: AppColors.primary,
-                radius: 40,
-                child: Text(
-                  nameFrind[index],
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: Colors.white),
+            padding: const EdgeInsets.all(4),
+            child: GestureDetector(
+              onTap: () {
+                context.read<HomeCubit>().changeSelectedIndex(index);
+              },
+              child: Container(
+                width: 90,
+                height: 90,
+                decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  borderRadius: BorderRadius.circular(50),
+                  border: _getBorder(index, context.read<HomeCubit>().selectedIndex),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ClipOval(
+                        child: Image.network(
+                          categories[index].image.toString(),
+                          height: 50,
+                          width: 50,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        categories[index].name.toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -41,5 +56,16 @@ class HomeCircleAvatar extends StatelessWidget {
         },
       ),
     );
+  }
+
+  BoxBorder? _getBorder(int index, int selectedIndex) {
+    if (index == selectedIndex) {
+      return Border.all(
+        color: Colors.black,
+        width: 4,
+      );
+    } else {
+      return null;
+    }
   }
 }
