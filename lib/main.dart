@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+// import 'package:first_project/core/local/local_storage_service.dart';
 import 'package:first_project/features/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
@@ -6,9 +7,9 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // LocalStorageService.instance.removeAll();
 
   runApp(const MyApp());
-
   // debugPaintSizeEnabled = true;
 }
 

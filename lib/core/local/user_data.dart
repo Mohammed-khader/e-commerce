@@ -18,7 +18,7 @@ class UserDataService {
   static dispose() async {
     email = null;
     username = null;
-    uid = null;
+    uid = null; 
     phone = null;
   }
 }

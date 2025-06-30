@@ -51,4 +51,5 @@ class HomeCubit extends Cubit<HomeStates> {
       },
     );
   }
+  void upDataIconCount(){}
 }

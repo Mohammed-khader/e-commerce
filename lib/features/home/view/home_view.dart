@@ -1,6 +1,8 @@
 import 'package:first_project/core/theme/app_colors.dart';
 import 'package:first_project/core/theme/app_padding.dart';
-import 'package:first_project/features/cart/widget/cart_icon.dart';
+import 'package:first_project/core/widgets/icons/view/cart_icon_view.dart';
+import 'package:first_project/core/widgets/icons/view_model/cart_icon_cubit.dart';
+import 'package:first_project/features/cart/view/cart_view.dart';
 import 'package:first_project/features/home/model/category_model.dart';
 import 'package:first_project/features/home/view_model/home_cubit.dart';
 import 'package:first_project/features/home/view_model/home_states.dart';
@@ -15,18 +17,28 @@ class HomeView extends StatelessWidget {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit()..getCategory(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => HomeCubit()..getCategory()),
+        BlocProvider(create: (context) => CartIconCubit()..getcount()),
+      ],
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.white,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => const CartView(),
+              ),
+            );
+          },
+          child: CartIconView(
+            onPressed: () {},
+          ),
+        ),
         drawer: const Drawer(),
         backgroundColor: Colors.white,
         appBar: AppBar(
-          actions: [
-            CartIconButton(
-              itemCount: 0,
-              onPressed: () {},
-            )
-          ],
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(

@@ -1,9 +1,9 @@
+import 'package:first_project/core/widgets/icons/view_model/cart_icon_cubit.dart';
 import 'package:first_project/features/home/view_model/home_cubit.dart';
 import 'package:first_project/features/product_details/view/product_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 class HomeGridView extends StatelessWidget {
   const HomeGridView({super.key});
@@ -13,7 +13,7 @@ class HomeGridView extends StatelessWidget {
     return Expanded(
       child: GridView.builder(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisExtent: 200,
@@ -25,9 +25,11 @@ class HomeGridView extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                  return ProductDetailsView(productDetails: product);
-                }));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => BlocProvider.value(
+                          value: context.read<CartIconCubit>(),
+                          child: ProductDetailsView(productDetails: product),
+                        )));
               },
               child: Card(
                 color: Colors.white,

@@ -63,7 +63,7 @@ class ProductDetailsView extends StatelessWidget {
                       CustomButtons(
                         text: 'Add To Cart',
                         onTap: () {
-                          context.read<ProductDetailsCubit>().addToCart();
+                          context.read<ProductDetailsCubit>().addToCart(context);
                         },
                       )
                     ],
