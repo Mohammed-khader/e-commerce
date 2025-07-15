@@ -11,6 +11,7 @@ class CustomTextField extends StatefulWidget {
     this.controller,
     this.validator,
     this.maxLength,
+    this.onChanged,
   });
   final String label;
   final double? borderRadius;
@@ -20,7 +21,7 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
   final int? maxLength;
   final String? Function(String?)? validator;
-
+  final void Function(String)? onChanged;
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -36,6 +37,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: widget.onChanged,
       maxLength: widget.maxLength,
       validator: widget.validator,
       controller: widget.controller,
@@ -49,12 +51,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     haidPassword = !haidPassword;
                     setState(() {});
                   },
-                  child: Icon(haidPassword
-                      ? Icons.visibility_off
-                      : Icons.remove_red_eye))
+                  child: Icon(haidPassword ? Icons.visibility_off : Icons.remove_red_eye))
               : null,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           label: Text(widget.label),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(widget.borderRadius ?? 50),

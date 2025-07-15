@@ -5,20 +5,22 @@ class _EmptyProductsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: AppColors.primary,
-            ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: AppColors.primary,
           ),
-          child: Center(
-            child: Text(
-              'No products found',
-              style: GoogleFonts.poppins(color: AppColors.primary),
+        ),
+        child: Center(
+          child: Text(
+            'No products found',
+            style: GoogleFonts.poppins(
+              fontSize: 20,
+              color: AppColors.primary,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

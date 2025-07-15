@@ -11,3 +11,13 @@ class AddToCartErrorState extends ProductDetailsStates {
 }
 
 class AddToCartSuccesState extends ProductDetailsStates {}
+
+class AddToFavoriteLoadingState extends ProductDetailsStates {}
+
+class AddToFavoriteErrorState extends ProductDetailsStates {
+  final String error;
+
+  AddToFavoriteErrorState({required this.error});
+}
+
+class AddToFavoriteSuccesState extends ProductDetailsStates {}

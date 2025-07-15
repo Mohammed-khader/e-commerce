@@ -19,10 +19,11 @@ class CartIconView extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                  builder: (_) => BlocProvider.value(
-                        value: context.read<CartIconCubit>(),
-                        child: const CartView(),
-                      )),
+                builder: (_) => BlocProvider.value(
+                  value: context.read<CartIconCubit>(),
+                  child: const CartView(),
+                ),
+              ),
             );
           },
         ),

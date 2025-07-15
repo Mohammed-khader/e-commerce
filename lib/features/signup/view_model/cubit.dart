@@ -12,7 +12,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
   final phonecontrolar = TextEditingController();
   final emailcontrolar = TextEditingController();
   final passwordcontrolar = TextEditingController();
-  final confermepasswordcontrolar = TextEditingController();
+  final confirmpasswordcontrolar = TextEditingController();
 
   void createAcoutn() async {
     if (formKey.isValid()) {
@@ -34,7 +34,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
     phonecontrolar.dispose();
     emailcontrolar.dispose();
     passwordcontrolar.dispose();
-    confermepasswordcontrolar.dispose();
+    confirmpasswordcontrolar.dispose();
 
     return super.close();
   }

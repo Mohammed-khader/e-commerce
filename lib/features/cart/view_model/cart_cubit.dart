@@ -1,4 +1,3 @@
-import 'package:first_project/core/widgets/icons/view_model/cart_icon_cubit.dart';
 import 'package:first_project/features/cart/repo/cart_repo.dart';
 import 'package:first_project/features/cart/view_model/cart_states.dart';
 import 'package:first_project/features/product_details/model/products_model.dart';
@@ -46,8 +45,7 @@ class CartCubit extends Cubit<CartStates> {
     emit(CartUpdateCountState());
   }
 
-  void removeProducts(String productID, BuildContext context) async {
-    final cubit = context.read<CartIconCubit>();
+  void removeProducts(String productID, BuildContext? context) async {
     cartProduct.removeWhere((product) => product.id == productID);
     calculateTotal();
     emit(CartUpdateProductsState());
@@ -55,7 +53,7 @@ class CartCubit extends Cubit<CartStates> {
     result.fold(
       (erorr) => CartErrorState(error: erorr),
       (_) {
-        cubit.getcount();
+        emit(CartRemoveProductsState());
       },
     );
   }

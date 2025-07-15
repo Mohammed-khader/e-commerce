@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitialState());
   final _loginrepo = LoginRepo();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   void logIn() async {
     if (formKey.currentState?.validate() ?? false) {

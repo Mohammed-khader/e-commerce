@@ -4,7 +4,6 @@ import 'package:first_project/core/local/user_data.dart';
 import 'package:first_project/features/product_details/model/products_model.dart';
 
 class CartRepo {
-  String name = 'joker';
   Future<Either<String, List<ProductsModel>>> getCartItems() async {
     try {
       List<ProductsModel> products = [];

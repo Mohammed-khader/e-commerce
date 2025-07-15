@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:first_project/core/local/user_data.dart';
 import 'package:first_project/features/login/model/login_response_mode.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -57,6 +58,9 @@ class LocalStorageService {
   }
 
   Future<void> setUserData(LoginResponseModel? loginResponseModel) async {
+    if (loginResponseModel != null) {
+      UserDataService.setUserData(loginResponseModel);
+    }
     await setEmail(loginResponseModel?.email ?? '');
     await setUsername(loginResponseModel?.username ?? '');
     await setUid(loginResponseModel?.uid ?? '');

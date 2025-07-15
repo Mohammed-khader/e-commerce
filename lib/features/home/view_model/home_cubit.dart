@@ -2,15 +2,17 @@ import 'package:first_project/features/home/model/category_model.dart';
 import 'package:first_project/features/product_details/model/products_model.dart';
 import 'package:first_project/features/home/repo/home_repo.dart';
 import 'package:first_project/features/home/view_model/home_states.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitialState());
 
   final HomeRepo homeRepo = HomeRepo();
-
+  final searchController = TextEditingController();
   List<CategoryModel> categoriesModel = [];
   List<ProductsModel> productModel = [];
+  List<ProductsModel> searchProduct = [];
 
   int selectedIndex = 0;
 
@@ -51,5 +53,14 @@ class HomeCubit extends Cubit<HomeStates> {
       },
     );
   }
-  void upDataIconCount(){}
+
+  void getSearchProduct(String name) {
+    searchProduct.clear();
+    for (var element in productModel) {
+      if (element.name.toLowerCase().contains(name.toLowerCase())) {
+        searchProduct.add(element);
+      }
+    }
+    emit(HomeSearchState());
+  }
 }

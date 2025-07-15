@@ -20,7 +20,10 @@ class LoginForm extends StatelessWidget {
         children: [
           Text(
             'Welcome To Shopease',
-            style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 20),
           Text(
@@ -33,7 +36,7 @@ class LoginForm extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             validator: (email) {
               if (email?.isEmpty ?? true) {
-                return 'Pleass Enter Your Email';
+                return 'Please Enter Your Email';
               }
               return null;
             },
@@ -46,7 +49,7 @@ class LoginForm extends StatelessWidget {
             controller: context.read<LoginCubit>().passwordController,
             validator: (password) {
               if (password?.isEmpty ?? true) {
-                return 'Pleass Enter Your Password';
+                return 'Please Enter Your Password';
               }
               return null;
             },
@@ -55,9 +58,13 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: 20),
           InkWell(
             onTap: () {},
-            child: const Text(
+            child: Text(
               'Forget Passowrd ?',
-              style: TextStyle(color: AppColors.primary),
+              style: GoogleFonts.poppins(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
             ),
           ),
           const SizedBox(height: 20),
@@ -70,7 +77,13 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: 30),
           Row(
             children: [
-              const Text('Do you have an account ? '),
+              Text(
+                'Do you have an account ? ',
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(
@@ -81,9 +94,13 @@ class LoginForm extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text(
+                child: Text(
                   'Sign Up ',
-                  style: TextStyle(color: AppColors.primary),
+                  style: GoogleFonts.poppins(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary,
+                  ),
                 ),
               )
             ],

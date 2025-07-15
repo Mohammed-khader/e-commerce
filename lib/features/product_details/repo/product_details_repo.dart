@@ -52,4 +52,50 @@ class ProductDetailsRepo {
         .doc(product.id)
         .update(product.toJson());
   }
+
+  Future<Either<String, void>> addProductToFavorite(ProductsModel productDetails) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserDataService.uid)
+          .collection('favorite')
+          .doc(productDetails.id)
+          .set(productDetails.toJson());
+      return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? '');
+    }
+  }
+
+  Future<Either<String, void>> removeProductFromFavorite(String productID) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserDataService.uid)
+          .collection('favorite')
+          .doc(productID)
+          .delete();
+      return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? '');
+    }
+  }
+
+  Future<Either<String, bool>> checkIfProductExisitInFavorite(String productID) async {
+    try {
+      final result = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserDataService.uid)
+          .collection('favorite')
+          .doc(productID)
+          .get();
+      if (result.exists) {
+        return const Right(true);
+      } else {
+        return const Right(false);
+      }
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? '');
+    }
+  }
 }

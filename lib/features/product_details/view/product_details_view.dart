@@ -8,6 +8,8 @@ import 'package:first_project/features/product_details/view_model/product_detail
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+part '../widget/favorite_icons_widget.dart';
+part '../widget/product_info_widget.dart';
 
 class ProductDetailsView extends StatelessWidget {
   const ProductDetailsView({super.key, required this.productDetails});
@@ -17,11 +19,12 @@ class ProductDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductDetailsCubit(product: productDetails),
+      create: (context) =>
+          ProductDetailsCubit(product: productDetails)..checkIfProductExisitInFavorite(),
       child: Scaffold(
         appBar: AppBar(
           actions: const [
-            Icon(Icons.favorite, color: Colors.red),
+            _FavoriteIconsWidget(),
             SizedBox(width: 5),
             Icon(Icons.share),
             SizedBox(width: 10),
@@ -37,37 +40,7 @@ class ProductDetailsView extends StatelessWidget {
               },
               child: Builder(
                 builder: (context) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Card(child: Image.network(productDetails.image, width: 250)),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        productDetails.name,
-                        style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        '${productDetails.price} \$',
-                        style: GoogleFonts.poppins(fontSize: 20, color: Colors.green),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        productDetails.description,
-                        style: GoogleFonts.poppins(fontSize: 15),
-                        maxLines: 2,
-                      ),
-                      const SizedBox(height: 25),
-                      CustomButtons(
-                        text: 'Add To Cart',
-                        onTap: () {
-                          context.read<ProductDetailsCubit>().addToCart(context);
-                        },
-                      )
-                    ],
-                  );
+                  return _ProductInfoWidget(productDetails: productDetails);
                 },
               ),
             ),

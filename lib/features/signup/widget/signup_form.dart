@@ -26,7 +26,7 @@ class SignUpForm extends StatelessWidget {
             keyboardType: TextInputType.name,
             validator: (username) {
               if (username?.isEmpty ?? true) {
-                return "Pleass Enter your user name";
+                return "Please Enter your user name";
               }
               return null;
             },
@@ -80,8 +80,8 @@ class SignUpForm extends StatelessWidget {
             obscureText: true,
             validator: (password) {
               if (password?.isEmpty ?? true) {
-                return "pleass Enter your Password";
-              } else if ((password?.length ?? 0) < 6) {
+                return "Please Enter your Password";
+              } else if ((password?.length ?? 0) < 8) {
                 return "password must be at least 8 characters";
               }
               return null;
@@ -89,13 +89,14 @@ class SignUpForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomTextField(
-            controller: context.read<SignUpCubit>().confermepasswordcontrolar,
+            controller: context.read<SignUpCubit>().confirmpasswordcontrolar,
             label: 'Conferm password',
             obscureText: true,
             validator: (confermpassword) {
               if (confermpassword?.isEmpty ?? true) {
-                return "pleass Enter your conferm password";
-              } else if (confermpassword != context.read<SignUpCubit>().passwordcontrolar.text) {
+                return "Please Enter your Confirm password";
+              } else if (confermpassword !=
+                  context.read<SignUpCubit>().passwordcontrolar.text) {
                 return "Confirm password does not match";
               }
               return null;
