@@ -5,32 +5,36 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomButtons extends StatelessWidget {
   const CustomButtons({
     super.key,
-    this.width,
     this.height,
     this.color,
     this.borderRadius,
-    this.fontSize,
-    this.textColors,
+    this.width,
     required this.text,
+    this.fontSize,
+    this.fontWeight,
+    this.textColor,
     required this.onTap,
   });
-  final double? width;
   final double? height;
+  final double? width;
   final Color? color;
   final double? borderRadius;
-  final Color? textColors;
-  final double? fontSize;
   final String text;
+  final double? fontSize;
+  final FontWeight? fontWeight;
+  final Color? textColor;
   final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(borderRadius ?? 50),
       onTap: onTap,
-      child: Center(
+      child: Material(
+        elevation: 5,
+        borderRadius: BorderRadius.circular(borderRadius ?? 50),
         child: Container(
-          width: width ?? 200,
-          height: height ?? 40,
+          width: width ?? double.infinity,
+          height: height ?? 50,
           decoration: BoxDecoration(
             color: color ?? AppColors.primary,
             borderRadius: BorderRadius.circular(borderRadius ?? 50),
@@ -39,9 +43,9 @@ class CustomButtons extends StatelessWidget {
             child: Text(
               text,
               style: GoogleFonts.poppins(
-                fontSize: fontSize ?? 16,
-                fontWeight: FontWeight.bold,
-                color: textColors ?? Colors.white,
+                fontSize: fontSize ?? 20,
+                fontWeight: fontWeight ?? FontWeight.w600,
+                color: textColor ?? Colors.white,
               ),
             ),
           ),

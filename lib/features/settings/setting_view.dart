@@ -1,5 +1,6 @@
 import 'package:first_project/core/theme/app_colors.dart';
 import 'package:first_project/features/change_password/view/change_password_view.dart';
+import 'package:first_project/features/change_profile/view/change_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,7 +21,14 @@ class SettingView extends StatelessWidget {
           children: [
             const SizedBox(height: 5),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ChangeProfileView(),
+                  ),
+                );
+              },
               leading: const Icon(
                 Icons.person,
                 size: 30,
@@ -31,8 +39,12 @@ class SettingView extends StatelessWidget {
             const Divider(),
             ListTile(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const ChangePasswordView()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ChangePasswordView(),
+                  ),
+                );
               },
               leading: const Icon(
                 Icons.lock_outline,

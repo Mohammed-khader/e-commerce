@@ -1,6 +1,7 @@
 import 'package:first_project/core/theme/app_colors.dart';
 import 'package:first_project/core/widgets/buttons/custom_buttons.dart';
 import 'package:first_project/core/widgets/dialog/custom_loding_dialog.dart';
+import 'package:first_project/core/widgets/snakbar/custom_snakbar.dart';
 import 'package:first_project/core/widgets/text_field/custom_text_field.dart';
 import 'package:first_project/core/widgets/toast_message/toast_message.dart';
 import 'package:first_project/features/change_password/view_model/change_password_cubit.dart';
@@ -37,7 +38,7 @@ class ChangePasswordView extends StatelessWidget {
                 } else if (state is ChangePasswordSuccesState) {
                   Navigator.pop(context);
                   Navigator.pop(context);
-                  ToastMessage.showSuccessMessage(context, state.message);
+                  CustomSnackbar.show(context, 'Profile Updated', color: Colors.green);
                 }
               },
               child: Builder(builder: (context) {
